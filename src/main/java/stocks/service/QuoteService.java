@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import stocks.dto.QuoteDto;
 import stocks.dto.SymbolDto;
@@ -17,6 +16,7 @@ import stocks.entity.Quote;
 import stocks.repository.QuoteRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -95,10 +95,6 @@ public class QuoteService {
         return result;
     }
 
-    public Flux<Quote> findAll() {
-        return quoteRepository.findAll();
-    }
-
     @Transactional
     public Mono<Quote> save(Quote quote) {
         Quote lastQuote = quoteRepository.findLastQuoteBySymbol(quote.getSymbol()).blockFirst();
@@ -106,5 +102,9 @@ public class QuoteService {
             return quoteRepository.save(quote);
         }
         return Mono.empty();
+    }
+
+    public List<Quote> getTopQuotes() {
+        return quoteRepository.findTopStocks().collectList().blockOptional().orElse(Collections.emptyList());
     }
 }
