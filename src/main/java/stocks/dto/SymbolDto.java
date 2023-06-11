@@ -1,8 +1,9 @@
 package stocks.dto;
 
 import lombok.*;
+import stocks.entity.Symbol;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -10,8 +11,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 public class SymbolDto {
+    private Long id;
     private String symbol;
     private String name;
-    private LocalDate date;
+    private Date date;
     private Boolean isEnabled;
+
+    public Symbol toEntity() {
+        Symbol result = new Symbol();
+        result.setId(id);
+        result.setSymbol(symbol);
+        result.setName(name);
+        result.setDate(date);
+        result.setIsEnabled(isEnabled);
+        return result;
+    }
 }
