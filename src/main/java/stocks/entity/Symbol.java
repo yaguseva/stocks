@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import stocks.dto.SymbolDto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,7 +18,7 @@ public class Symbol {
     private Long id;
     private String symbol;
     private String name;
-    private Date date;
+    private LocalDate date;
     private Boolean isEnabled;
 
     public SymbolDto toDto() {

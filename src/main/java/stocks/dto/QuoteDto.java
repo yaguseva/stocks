@@ -1,9 +1,11 @@
 package stocks.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
+import stocks.util.LocalDateDeserializer;
 import stocks.entity.Quote;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,7 +22,8 @@ public class QuoteDto {
     private String companyName;
     private String currency;
     private String symbol;
-    private Date latestUpdate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate latestUpdate;
 
     public static Quote toEntity(QuoteDto dto) {
         Quote quote = new Quote();

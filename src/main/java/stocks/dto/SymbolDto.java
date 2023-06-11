@@ -3,6 +3,7 @@ package stocks.dto;
 import lombok.*;
 import stocks.entity.Symbol;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -14,7 +15,7 @@ public class SymbolDto {
     private Long id;
     private String symbol;
     private String name;
-    private Date date;
+    private LocalDate date;
     private Boolean isEnabled;
 
     public Symbol toEntity() {

@@ -1,6 +1,5 @@
 package stocks.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import stocks.dto.QuoteDto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 @Getter
@@ -26,8 +25,7 @@ public class Quote {
     private String companyName;
     private String currency;
     private String symbol;
-    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
-    private Date latestUpdate;
+    private LocalDate latestUpdate;
 
     public QuoteDto toDto() {
         QuoteDto dto = new QuoteDto();
