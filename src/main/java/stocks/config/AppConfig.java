@@ -22,7 +22,6 @@ public class AppConfig {
                 .build();
         return WebClient.builder()
                 .exchangeStrategies(strategies)
-                .baseUrl("https://api.iex.cloud/v1")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }

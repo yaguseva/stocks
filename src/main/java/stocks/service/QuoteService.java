@@ -59,7 +59,7 @@ public class QuoteService {
     public List<QuoteDto> getQuotes(List<SymbolDto> symbols) {
         List<Supplier<Optional<QuoteDto>>> tasks = new ArrayList<>();
 //        todo: remove
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             SymbolDto symbol = symbols.get(i);
             if (symbol.getIsEnabled()) {
                 tasks.add(() -> getStockQuote(symbol.getSymbol()));
