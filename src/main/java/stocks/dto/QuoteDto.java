@@ -2,8 +2,8 @@ package stocks.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
-import stocks.util.LocalDateDeserializer;
 import stocks.entity.Quote;
+import stocks.util.LocalDateDeserializer;
 
 import java.time.LocalDate;
 
@@ -25,17 +25,17 @@ public class QuoteDto {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate latestUpdate;
 
-    public static Quote toEntity(QuoteDto dto) {
+    public Quote toEntity() {
         Quote quote = new Quote();
-        quote.setVolume(dto.volume);
-        quote.setPreviousVolume(dto.previousVolume);
-        quote.setLatestPrice(dto.latestPrice);
-        quote.setChange(dto.change);
-        quote.setCalculationPrice(dto.calculationPrice);
-        quote.setCompanyName(dto.companyName);
-        quote.setCurrency(dto.currency);
-        quote.setSymbol(dto.getSymbol());
-        quote.setLatestUpdate(dto.getLatestUpdate());
+        quote.setVolume(volume);
+        quote.setPreviousVolume(previousVolume);
+        quote.setLatestPrice(latestPrice);
+        quote.setChange(change);
+        quote.setCalculationPrice(calculationPrice);
+        quote.setCompanyName(companyName);
+        quote.setCurrency(currency);
+        quote.setSymbol(getSymbol());
+        quote.setLatestUpdate(getLatestUpdate());
         return quote;
     }
 }
