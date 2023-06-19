@@ -23,12 +23,12 @@ public class IexApiClient {
     @Value("${iex.api.token}")
     private String iexApiToken;
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClient;
 
     public Flux<SymbolDto> getAllSymbols() {
         log.info("Request all symbols");
-        return webClient.get()
-                .uri(builder -> builder.path(iexApiBaseUrl + "/data/core/ref_data_iex_symbols")
+        return webClient.baseUrl(iexApiBaseUrl).build().get()
+                .uri(builder -> builder.path("/data/core/ref_data_iex_symbols")
                         .queryParam("token", iexApiToken)
                         .build())
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -37,8 +37,8 @@ public class IexApiClient {
 
     public Flux<QuoteDto> getQuoteBySymbol(String symbol) {
         log.info("Request quote for " + symbol);
-        return webClient.get()
-                .uri(builder -> builder.path(iexApiBaseUrl + "/data/core/quote/" + symbol)
+        return webClient.baseUrl(iexApiBaseUrl).build().get()
+                .uri(builder -> builder.host(iexApiBaseUrl).path(iexApiBaseUrl + "/data/core/quote/" + symbol)
                         .queryParam("token", iexApiToken)
                         .build())
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

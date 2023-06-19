@@ -3,16 +3,16 @@ package stocks.job;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import stocks.service.DataProcessingService;
+import stocks.service.PrintService;
 
 @Component
 @RequiredArgsConstructor
-public class ProcessCompanyDataJob {
-
-    private final DataProcessingService dataProcessingService;
+public class PrintCompanyDataJob {
+    private final PrintService printService;
 
     @Scheduled(cron="${data.printing.cron}")
-    public void process() {
-        dataProcessingService.process();
+    public void print() {
+        printService.printSymbols();
+        printService.printStockQuotes();
     }
 }
