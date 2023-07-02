@@ -46,7 +46,6 @@ public class IexApiClient {
                 restTemplate.getForEntity(
                         ALL_SYMBOLS_URL + TOKEN,
                         CompanyEntity[].class);
-        CompanyEntity[] employees = response.getBody();
-        return employees;
+        return response.getBody();
     }
 }
