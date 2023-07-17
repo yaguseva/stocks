@@ -1,26 +1,13 @@
 version: "3.8"
 
 services:
-  psql-db:
-    image: postgres
-    container_name: psql-db
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123
-      - POSTGRES_DB=stocks_db
-    ports:
-      - '5432:5432'
-
   stocks-app:
     container_name: stocks-data
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/stocks_db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stocks-db.car422cofz4d.us-east-1.rds.amazonaws.com:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_DATASOURCE_PASSWORD=Testdb123-
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    depends_on:
-      - psql-db

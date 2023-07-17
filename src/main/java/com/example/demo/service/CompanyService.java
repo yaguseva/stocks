@@ -8,6 +8,7 @@ import com.example.demo.repository.StockRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,8 +24,9 @@ public class CompanyService {
     private final IexApiClient iexApiClient;
     private final StockRepository stockRepository;
     private final CompanyRepository companyRepository;
-    public void processCompanyDetails() {
 
+    @Transactional
+    public void processCompanyDetails() {
         List<CompanyEntity> companyEntities = Arrays.stream(iexApiClient.getAllSymbols()).toList();
         companyRepository.saveAll(companyEntities);
 

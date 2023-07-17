@@ -27,7 +27,6 @@ public class IexApiClient {
         RestTemplate restTemplate = new RestTemplate();
         StockEntity stockEntity = null;
 
-        log.info(companyEntity.toString());
         try {
             ResponseEntity<StockEntity> response =
                     restTemplate.getForEntity(
